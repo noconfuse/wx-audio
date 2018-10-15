@@ -1,0 +1,9 @@
+<!--pages/listenMusic/listenMusic.wxml-->
+<view class='container'>
+<web-view src="../web/audioPlay.html"></web-view>
+  <scroll-view scroll-y="true" scroll-with-animation="true">
+    <view wx:for="{{audioNames}}" wx:key="index" bindtap='playAudio' data-audioname="{{item.audioName}}">
+      {{item.audioName}}
+    </view>
+  </scroll-view>
+</view>
