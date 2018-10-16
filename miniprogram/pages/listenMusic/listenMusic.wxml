@@ -1,9 +1,37 @@
 <!--pages/listenMusic/listenMusic.wxml-->
 <view class='container'>
-<web-view src="../web/audioPlay.html"></web-view>
+  <view bindtap='createList'>添加播放列表</view>
   <scroll-view scroll-y="true" scroll-with-animation="true">
-    <view wx:for="{{audioNames}}" wx:key="index" bindtap='playAudio' data-audioname="{{item.audioName}}">
-      {{item.audioName}}
+    <view wx:for="{{musicList}}" wx:key="index" bindtap='playAudio' data-audioname="{{item.description}}">
+      {{item.description}}
     </view>
   </scroll-view>
+  <modal title="创建列表" id="modal">
+       <form bindsubmit='createSongList' id='createListForm' class='createListForm'>
+       <view class='formTitle'>创建歌单</view>
+       <view class='inputRow'>
+        <label>选择封面</label>
+        <view>
+        <image src='{{imageUrl}}' bindtap='chooseCoverImage' class='coverImage' name="coverImage"></image>
+        </view>
+       </view>
+        <view class='inputRow'>
+          <input placeholder='填入歌单描述' name="listDescription">
+          </input>
+        </view>
+        <view class='inputRow'>
+          <label>是否为私人</label>
+          <switch name="isPrivite">
+          </switch>
+        </view>
+      <view class='flex-between'>
+        <button formType='submit'>
+          创建
+        </button>
+        <button formType='reset'>
+          重置
+        </button>
+      </view>
+    </form>
+  </modal>
 </view>

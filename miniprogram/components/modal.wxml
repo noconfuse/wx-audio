@@ -1,0 +1,5 @@
+<view class='mask' bindtap='clickMask' wx:if="{{isShowModal}}" bindtap='hideModal'>
+  <slot catchtap="stopProgration">
+  </slot>
+</view>
+    

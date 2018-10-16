@@ -5,3 +5,8 @@
   align-items: center;
   box-sizing: border-box;
 } 
+.flex-between{
+  display: flex;
+  justify-content: flex-between;
+  align-items: center;
+}

@@ -1,14 +1,15 @@
 {
   "cloud": true,
   "pages": [
+    "pages/record/record",
+    "pages/listenMusic/listenMusic",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/listenMusic/listenMusic"
+    "pages/chooseLib/chooseLib"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

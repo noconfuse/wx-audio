@@ -1,1 +1,27 @@
 /* pages/listenMusic/listenMusic.wxss */
+#createListForm{
+  background-color: #fff;
+  position: absolute;
+  padding: 20rpx 40rpx;
+}
+.createListForm .inputRow{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40rpx 0;
+}
+.createListForm label{
+  display: inline-block;
+  min-width: 150rpx;
+}
+.createListForm input{
+  border-bottom: 1rpx solid #222;
+  margin-left: 10rpx;
+}
+.createListForm .formTitle{
+  color: #222
+}
+.createListForm .coverImage{
+  width: 200rpx;
+  height: 200rpx;
+}

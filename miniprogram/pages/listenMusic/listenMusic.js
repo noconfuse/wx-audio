@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    audioNames:[]
+    musicList:[],
+    imageUrl:''    
   },
 
   /**
@@ -14,15 +15,11 @@ Page({
    */
   onLoad: function (options) {
     wx.cloud.callFunction({
-      name:"getAudioList",
-      data:{
-        offset:0,
-        pageSize:10
-      }
+      name:'getMusicList',
+      data:{}
     }).then(res=>{
-      console.log(res)
       this.setData({
-        audioNames:res.result.data
+        musicList:res.result.data
       })
     }).catch(err=>{
       console.log(err)
@@ -33,7 +30,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.dialog = this.selectComponent('#modal')
   },
 
   /**
@@ -77,13 +74,44 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  
   playAudio(e){
     let audioname = e.currentTarget.dataset.audioname;
     let audioContext = wx.createInnerAudioContext();
     audioContext.src = app.globalData.audioBasePath+ "钱半仙 - 梁祝（钢琴版）.mp3";
     audioContext.play()
 
-    // console.log( new AudioContext())
+  },
+  createList(){
+    this.dialog.showModal();
+  },
+  cancel(){
+    this.dialog.hideModal();
+  },
+  createSongList(e){
+    let title = e.detail.value.listTitle,description = e.detail.value.listDescription;
+    let isPrivate = e.detail.value.isPrivite;
+    console.log(this.data.imageUrl)
+    wx.cloud.callFunction({
+      name:"createMusicList",
+      data:{
+        description:e.detail.value.description,
+        isPrivate:e.detail.value.isPrivate,
+        coverImage:this.data.imageUrl
+      }
+    }).then(res=>{
+      console.log(res)
+
+    })
+  },
+  chooseCoverImage(){
+    wx.chooseImage({
+      sizeType:['compressed'],
+      success:(res)=>{
+        this.setData({
+          imageUrl:res.tempFilePaths[0]
+        })
+      }
+    })
   }
 })

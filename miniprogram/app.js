@@ -7,9 +7,9 @@ App({
     } else {
       wx.cloud.init({
         traceUser: true,
+        env:'test-e824a6'
       })
     }
-
     this.globalData = {
       audioBasePath:"cloud://test-e824a6.7465-test-e824a6/"
     }
