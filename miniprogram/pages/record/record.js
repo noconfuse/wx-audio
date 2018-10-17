@@ -14,6 +14,7 @@ Page({
    */
   onLoad: function (options) {
     this.recordmanger = wx.getRecorderManager();
+    this.audioContext = wx.createInnerAudioContext();
     this.recordmanger.onFrameRecorded((frameBuffer,isLastFrame)=>{
       console.log(frameBuffer)
     })
@@ -27,19 +28,17 @@ Page({
           wx.cloud.callFunction({
             name: "uploadfile",
             data: {
-              filePath: cloudPath
-            },success:(res)=>{
-              console.log(res)
+              fileId:res.fileID
             }
           }).then(result=>{
-            console.log(res)
+            console.log(result)
           })
         },
         fail:(err=>{
           console.log(err)
         })
       })
-
+      this.audioContext.src = tempFilePath
     })
   },
 
@@ -94,12 +93,14 @@ Page({
   startRecord(e){
     this.recordmanger.start({
       duration: 60000,
-      frameSize: 2048,
       format: 'mp3',
       sampleRate: 16000
     })
   },
   stopRecord(){
     this.recordmanger.stop()
+  },
+  playvoice(){
+    this.audioContext.play()
   }
 })
