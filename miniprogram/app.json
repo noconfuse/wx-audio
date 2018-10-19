@@ -3,6 +3,7 @@
   "pages": [
     "pages/record/record",
     "pages/listenMusic/listenMusic",
+    "pages/testApi/testApi",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

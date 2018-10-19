@@ -1,7 +1,15 @@
 <!--pages/record/record.wxml-->
 <view class='container'>
+<button bindtap='uploadtestaudio'>上传</button>
 <button bindtap='playvoice'>播放</button>
-  <button bind:longpress='startRecord' bind:touchcancel="stopRecord" bind:touchend="stopRecord">
-    按住说话
-  </button>
+  <scroll-view>
+    <view wx:for="{{msg}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+        <view class="msg">{{item}}</view>
+    </view>
+  </scroll-view>
+  <canvas canvas-id='waveForm'>
+  
+  </canvas>
+  <view class='icon iconfont icon-microphoneicon recordBtn' hover-class='pressed'>
+  </view>
 </view>

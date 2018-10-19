@@ -1,1 +1,13 @@
-/* pages/record/record.wxss */
+.recordBtn{
+  position: fixed;
+  bottom: 120rpx;
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5)
+}
+
+.recordBtn.pressed{
+  background-color:#555;
+  color: #fff
+}

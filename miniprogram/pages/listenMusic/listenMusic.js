@@ -80,7 +80,6 @@ Page({
     let audioContext = wx.createInnerAudioContext();
     audioContext.src = app.globalData.audioBasePath+ "钱半仙 - 梁祝（钢琴版）.mp3";
     audioContext.play()
-
   },
   createList(){
     this.dialog.showModal();

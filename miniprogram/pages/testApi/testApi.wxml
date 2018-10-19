@@ -1,0 +1,5 @@
+<!--pages/testApi/testApi.wxml-->
+<view class='container'>
+  <button open-type='getPhoneNumber' bindgetphonenumber='onGotPhoneNumber'></button>
+  <button bindtap='getLocation'>获取位置</button>
+</view>

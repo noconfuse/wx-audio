@@ -2,7 +2,7 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -10,7 +10,7 @@
 	},
 	"appid": "wx29d513e2d3830233",
 	"projectname": "audioPlay",
-	"libVersion": "2.2.5",
+	"libVersion": "2.3.0",
 	"condition": {
 		"search": {
 			"current": -1,

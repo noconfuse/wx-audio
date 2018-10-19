@@ -1,4 +1,6 @@
 /**app.wxss**/
+@import './style/stylesheet.wxss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,3 +12,4 @@
   justify-content: flex-between;
   align-items: center;
 }
+
