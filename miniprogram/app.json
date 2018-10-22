@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "pages/bmap/bmap",
     "pages/record/record",
     "pages/listenMusic/listenMusic",
     "pages/testApi/testApi",

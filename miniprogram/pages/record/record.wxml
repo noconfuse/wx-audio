@@ -12,4 +12,5 @@
   </canvas>
   <view class='icon iconfont icon-microphoneicon recordBtn' hover-class='pressed'>
   </view>
+  <official-account></official-account>
 </view>

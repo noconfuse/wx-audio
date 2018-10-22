@@ -1,5 +1,4 @@
 const app =  getApp()
-// pages/record/record.js
 Page({
 
   /**
@@ -56,8 +55,6 @@ Page({
   onReady: function () {
     this.context = wx.createCanvasContext('waveForm');
     this.context.clearRect(0,0,300,225);
-
-
   },
 
   /**

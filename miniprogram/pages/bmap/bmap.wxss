@@ -1,0 +1,19 @@
+.container{
+  position: fixed;
+  width: 750rpx;
+  height: 100%
+}
+.searchInput{
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0,0.3);
+  margin-top:50rpx;
+  width: 650rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  padding-left: 20rpx;
+}
+.sug_info{
+  width: 664rpx;
+  height: 500rpx;
+  background: #fff;
+}
