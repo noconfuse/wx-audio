@@ -1,8 +1,18 @@
 <view class="container"> 
   <input type='text' class='searchInput' placeholder="搜索地点" confirm-type="search" bindinput='bindkeyinput'></input>
-  <scroll-view class='sug_info'>
-    <text wx:for="{{sugData}}" wx:key="index">
-      {{item.name}}
-      </text>
-  </scroll-view>
+  <!-- <scroll-view class='sug_info' scroll-y='true'> -->
+  <!-- <rich-text>
+    <ul>
+      <li wx:for="{{sugData}}" wx:key="index" class="sug_item">
+        <icon class='icon iconfont icon-coordinates'></icon>{{item.name}}
+      </li>
+    </ul>
+  </rich-text> -->
+    <!-- <view wx:for="{{sugData}}" wx:key="index" class='sug_item'>
+      <text>
+        {{item.name}}
+        </text>
+    </view> -->
+  <!-- </scroll-view> -->
+    <map longitude='{{initLongitude}}' latitude='{{initLatitude}}' enable-zoom="true" show-compass='true' markers='{{markers}}'></map>
 </view> 
