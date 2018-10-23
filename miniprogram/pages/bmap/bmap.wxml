@@ -1,18 +1,17 @@
 <view class="container"> 
-  <input type='text' class='searchInput' placeholder="搜索地点" confirm-type="search" bindinput='bindkeyinput'></input>
-  <!-- <scroll-view class='sug_info' scroll-y='true'> -->
-  <!-- <rich-text>
-    <ul>
-      <li wx:for="{{sugData}}" wx:key="index" class="sug_item">
-        <icon class='icon iconfont icon-coordinates'></icon>{{item.name}}
-      </li>
-    </ul>
-  </rich-text> -->
-    <!-- <view wx:for="{{sugData}}" wx:key="index" class='sug_item'>
-      <text>
-        {{item.name}}
-        </text>
-    </view> -->
-  <!-- </scroll-view> -->
-    <map longitude='{{initLongitude}}' latitude='{{initLatitude}}' enable-zoom="true" show-compass='true' markers='{{markers}}'></map>
+<input type='text' class='searchInput' placeholder="输入关键词" confirm-type="search" bindinput='bindkeyinput' value='{{keyword}}' bindtap='test'></input>
+    <map 
+    id='myMap'
+    enable-zoom="true" 
+    show-compass='true' 
+    show-location='true'
+    markers='{{markers}}'
+    latitude='{{latitude}}'
+    longitude='{{longitude}}'>
+    <cover-view class='sug_info' scroll-y='true' wx:if="{{showSugInfo}}">
+      <cover-view wx:for="{{sugData}}" wx:key="index" class="sug_item" bindtap="comfirmInput" data-sug="{{item}}">
+        <cover-view class='icon iconfont icon-coordinates'></cover-view>{{item.title}}
+      </cover-view>
+    </cover-view>
+    </map>
 </view> 

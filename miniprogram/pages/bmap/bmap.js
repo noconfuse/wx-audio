@@ -1,59 +1,93 @@
-const bmap = require('../../lib/bmap-wx.min.js')
+const QQMapWX = require('../../lib/qqmap-wx-jssdk.min.js')
+let qqmapsdk;
 Page({
   data: {
     sugData: [],
-    initLatitude:0,
-    initLongitude:0,
-    markers:{
+    markers:[{
       id:0,
-      latitude: 23.099994,
-      longitude: 113.324520,
-      iconPath:'../../images/yellpwduck.png'
-    }
+      iconPath:'../../images/yellowduck.png'
+    }],
+    keyword:'',
+    ad_info:{},
+    showSugInfo:false,
+    latitude:0,
+    longitude:0
   },
-  onLoad: function (options) {
-    // wx.request({
-    //   url:'http://192.168.1.3:3001/map/transit',
-    //   method:'post',
-    //   data:{
-
-    //   },
-    //   success:(result)=>{
-    //     console.log(result)
-    //   }
-    // })
+  onReady:function(){
     var that = this;
     wx.getLocation({
-      type:'gcj02',
       success: function(res) {
-        console.log(res)
         that.setData({
-          initLatitude:res.latitude,
-          initLongitude:res.longitude,
-          markers:{
-            longitude:res.longitude,
-            latitude:res.latitude
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        qqmapsdk.reverseGeocoder({
+          location:{
+            latitude:res.latitude,
+            longitude:res.longitude
+          },
+          success:(res)=>{
+            that.setData({
+              ad_info:res.result.ad_info
+            })
           }
         })
       },
     })
   },
+  onLoad: function (options) {
+    qqmapsdk = new QQMapWX({
+      key:'734BZ-JOCR4-5MFUW-XNCUT-EUMBF-FKBGM'
+    })
+    var that = this;
+    this.mapCtx = wx.createMapContext('myMap')
+    this.mapCtx.moveToLocation()
+  },
   bindkeyinput:function(e){
     var that = this;
-    const Bmap = new bmap.BMapWX({
-      ak: '4pEG4k5R5aK5qatCrowMHsAShbK3hbeC'
-    })
-    Bmap.suggestion({
-      query:e.detail.value,
-      region:'上海',
-      city_limit:true,
+    qqmapsdk.getSuggestion({
+      keyword:e.detail.value,
+      region:this.data.ad_info.city,
+      region_fix:0,
       fail:(err)=>{
         console.log(err)
-      },success:(data)=>{
-        console.log(data,that)
+      },
+      success:(data)=>{
         that.setData({
-          sugData:data.result
+          sugData:data.data,
+          showSugInfo:true
         })
+      }
+    })
+  },
+  comfirmInput:function(item){
+    let data = item.target.dataset,sugData = data.sug;
+    this.setData({
+      keyword:sugData.title,
+      showSugInfo:false
+    })
+    this.search(sugData.address)
+    //todo有些关键词需要直接给出距离
+
+  },
+  search:function(adr){
+    var that = this;
+    qqmapsdk.geocoder({
+      address:adr,
+      success:(res)=>{
+        let result = res.result;
+        that.setData({
+          'markers':[{
+            id:1,
+            latitude: result.location.lat,
+            longitude: result.location.lng
+          }],
+          longitude: result.location.lng,
+          latitude:result.location.lat
+        })
+      },
+      fail:(err)=>{
+        console.log(err)
       }
     })
   }
